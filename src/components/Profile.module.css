@@ -1,0 +1,9 @@
+.mainContent {
+    grid-area: main-content;
+    border: 2px solid rgb(255, 0, 255);
+    margin: 3px 3px;
+    background-color: rgb(195, 255, 127);
+    border-radius: 10px;
+    }
+    
+    

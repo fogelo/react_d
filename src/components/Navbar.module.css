@@ -1,0 +1,7 @@
+.navbar {
+  grid-area: navbar;
+  border: 2px solid rgb(0, 110, 255);
+  margin: 3px 3px;
+  background-color: rgb(255, 232, 127);
+  border-radius: 10px;
+}

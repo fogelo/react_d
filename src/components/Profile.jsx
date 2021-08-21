@@ -1,6 +1,8 @@
+import classes from './Profile.module.css'
+
 const Profile = () => {
     return (
-      <div className = 'main-content'>
+      <div className = {classes.mainContent}>
         <div>ava+description</div>
         <div>
           My Posts
