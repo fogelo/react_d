@@ -1,11 +1,11 @@
 import classes from './Post.module.css'
 
-const Post = () => {
+const Post = (props) => {
     return (
       <div className = {classes.mainContent}>
           <div>
             <img src = 'http://archilab.online/images/1/123.jpg'></img>
-            Post 1
+            {props.messages}
           </div>
           <div>like</div>
       </div>
