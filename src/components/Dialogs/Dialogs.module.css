@@ -1,0 +1,7 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.dialogs .active {
+    color: rgb(247, 0, 255);
+}
