@@ -3,7 +3,7 @@ import classes from './Profile.module.css'
 
 const Profile = () => {
     return (
-      <div className = {classes.mainContent}>
+      <div>
         <div>ava+description</div>
         <MyPosts></MyPosts>
       </div>
