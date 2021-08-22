@@ -5,3 +5,9 @@
   background-color: rgb(255, 232, 127);
   border-radius: 10px;
 }
+a{
+  text-decoration: none;
+}
+a.active {
+  color: red;
+}
