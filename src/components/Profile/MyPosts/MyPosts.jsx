@@ -9,7 +9,7 @@ let posts = [
 
 let postsElements = posts.map(p => <Post className = {classes.post} messages={p.message}  likeCount={p.likeCount}></Post>)
 
-const MyPosts = () => {
+const MyPosts = (props) => {
     return (
       <div className = {classes.mainContent}>
         <div className = {classes.posts}>
