@@ -21,8 +21,13 @@
             {id: '4', message: 'Where do you live?', likeCount: '45'},
           ],
       }
-
-
   }
 
+
+  export let addPost = (postMessage) => {
+
+    let newPost = {id: '5', message: postMessage, likeCount: '0'}
+    state.profilesPage.posts.push(newPost)
+    console.log(state.profilesPage.posts)
+    }
   export default state
