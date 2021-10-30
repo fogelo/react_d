@@ -22,7 +22,7 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(state);
 
-subscribe(rerenderEntireTree);
+// subscribe(rerenderEntireTree);
 
 
 // If you want to start measuring performance in your app, pass a function
