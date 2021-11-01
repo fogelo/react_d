@@ -1,3 +1,6 @@
+import reducerDialogs from "./reducer-dialogs"
+import reducerProfile from "./reducer-profile"
+
 let ADD_POST = "ADD-POST"
 let UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 let UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
@@ -42,34 +45,11 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-
     dispatch(action) {
-        if(action.type === "ADD-POST") {
-                let newPost = { id: '5', 
-                                message: this._state.profilesPage.newPostText, 
-                                likeCount: '0'}
-                this._state.profilesPage.posts.push(newPost)
-                console.log(this._state.profilesPage.posts)
-                this._state.profilesPage.newPostText = ''
-                this._callSubscriber(this._state)
-        } else if(action.type === "UPDATE-NEW-POST-TEXT") {
-                this._state.profilesPage.newPostText = action.newText
-                console.log(this._state.profilesPage)
-                this._callSubscriber(this._state)
-        } else if(action.type === "SEND-MESSAGE") {
-                let newMessage = { id: '4', 
-                                message: this._state.dialogsPage.newMessageText, 
-                                }
-                this._state.dialogsPage.messages.push(newMessage)
-                console.log(this._state.dialogsPage.messages)
-                this._state.dialogsPage.newMessageText = ''
-                this._callSubscriber(this._state)
-        } else if(action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-                this._state.dialogsPage.newMessageText = action.newBody
-                console.log(this._state.dialogsPage)
-                this._callSubscriber(this._state)
-        }
-    }
+        this._state.profilesPage = reducerProfile(this._state.profilesPage, action)
+        this._state.dialogsPage = reducerDialogs(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
+    },
 }
 
 export const addPostActionCreator =() => { 
