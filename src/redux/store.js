@@ -39,6 +39,7 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
+    
     dispatch(action) {
         this._state.profilesPage = reducerProfile(this._state.profilesPage, action)
         this._state.dialogsPage = reducerDialogs(this._state.dialogsPage, action)
