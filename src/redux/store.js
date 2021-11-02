@@ -1,12 +1,6 @@
 import reducerDialogs from "./reducer-dialogs"
 import reducerProfile from "./reducer-profile"
 
-let ADD_POST = "ADD-POST"
-let UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
-let UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
-let SEND_MESSAGE = "SEND-MESSAGE"
-
-
 let store = {
     _state: {
         dialogsPage: {
@@ -52,21 +46,5 @@ let store = {
     },
 }
 
-export const addPostActionCreator =() => { 
-    return ({type: ADD_POST})
-  }
-
-export const updateNewPostTextActionCreator = (text) => {
-    return ({type: UPDATE_NEW_POST_TEXT, newText: text})
-  }
-
-
-export const sendMessageActionCreator =() => { 
-    return ({type: SEND_MESSAGE})
-  }
-
-export const updateNewMessageTextActionCreator = (body) => {
-    return ({type: UPDATE_NEW_MESSAGE_TEXT, newBody: body})
-  }
 export default store
 
