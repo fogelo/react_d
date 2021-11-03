@@ -11,21 +11,17 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = (props) => {
   return (
-    <BrowserRouter>
       <div className="App-wrapper">
         <Header></Header>
         <Navbar></Navbar>
         <div className="App-wrapper-content">
-          <Route path='/profile' render={() => <Profile store={props.store}></Profile>}></Route>
-          <Route path='/dialogs' render={() => <DialogsContanier store={props.store}></DialogsContanier>}></Route>
+          <Route path='/profile' render={() => <Profile></Profile>}></Route>
+          <Route path='/dialogs' render={() => <DialogsContanier></DialogsContanier>}></Route>
           <Route path='/news' component={News}></Route>
           <Route path='/music' component={Music}></Route>
           <Route path='/settings' component={Settings}></Route>
         </div>
       </div>
-      
-    </BrowserRouter>
-
   );
 }
 

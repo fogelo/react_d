@@ -17,7 +17,7 @@ let initialState = {
     newMessageText: 'введите сообщение'
 }
 
-const reducerDialogs = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case "SEND-MESSAGE":
@@ -44,4 +44,4 @@ export const updateNewMessageTextActionCreator = (body) => {
     return ({ type: UPDATE_NEW_MESSAGE_TEXT, newBody: body })
 }
 
-export default reducerDialogs
+export default dialogsReducer
