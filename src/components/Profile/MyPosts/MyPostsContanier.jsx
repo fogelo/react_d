@@ -35,7 +35,7 @@ import { connect } from 'react-redux'
 //   )
 // }
 
-//Создание контейнерной компоненты с помощью функции connect из билиотки RR
+//Создание контейнерной компоненты с помощью функции connect из билиотки RR 
 let mapStateToProps = (state) => {
   return {
     posts: state.profilesPage.posts,
