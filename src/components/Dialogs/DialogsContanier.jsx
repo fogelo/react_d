@@ -3,28 +3,21 @@ import Message from './Message/Message'
 import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 import StoreContext from '../../StoreContext'
+import { connect } from 'react-redux'
 
-
-
-
-const DialogsContanier = (props) => {
-
-    return <StoreContext.Consumer> 
-        {
-        (store) => {
-            let state = store.getState().dialogsPage
-
-            let onSendMessageClick = () => {
-                store.dispatch(sendMessageActionCreator())
-            }
-
-            let onNewMessageChange = (body) => {
-                store.dispatch(updateNewMessageTextActionCreator(body))
-            }
-            return <Dialogs updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} dialogsPage={state}></Dialogs>
+    let mapStateToProps = (state) => { //настраивает данные, которые мы возьмем из state
+        return {
+            dialogsPage: state.dialogsPage
         }
     }
-    </StoreContext.Consumer>
-}
 
-export default DialogsContanier
+    let mapDispatchToProps = (dispatch) => { //настраивает callback'и которые мы будет отправлять в нашу презентационную компоненту
+        return {
+            updateNewMessageBody: () => { dispatch(sendMessageActionCreator()) },
+            sendMessage: (body) => { dispatch(updateNewMessageTextActionCreator(body)) }
+        }
+    }
+    // connect создает контейнерную компонунту для Dialogs как мы это делали вручную, 
+    // f1 и f2 нужны чтобы настраивать то что нужно для презентационной омпоненты Dialogs
+    const DialogsContanier = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+    export default DialogsContanier
