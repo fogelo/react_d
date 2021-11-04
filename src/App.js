@@ -6,22 +6,24 @@ import DialogsContanier from './components/Dialogs/DialogsContanier';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import UsersContanier from './components/Users/UsersContanier';
 
 
 const App = (props) => {
   return (
-      <div className="App-wrapper">
-        <Header></Header>
-        <Navbar></Navbar>
-        <div className="App-wrapper-content">
-          <Route path='/profile' render={() => <Profile></Profile>}></Route>
-          <Route path='/dialogs' render={() => <DialogsContanier></DialogsContanier>}></Route>
-          <Route path='/news' component={News}></Route>
-          <Route path='/music' component={Music}></Route>
-          <Route path='/settings' component={Settings}></Route>
-        </div>
+    <div className="App-wrapper">
+      <Header></Header>
+      <Navbar></Navbar>
+      <div className="App-wrapper-content">
+        <Route path='/profile' render={() => <Profile></Profile>}></Route>
+        <Route path='/dialogs' render={() => <DialogsContanier></DialogsContanier>}></Route>
+        <Route path='/news' component={News}></Route>
+        <Route path='/music' component={Music}></Route>
+        <Route path='/settings' component={Settings}></Route>
+        <Route path='/users' render={() => <UsersContanier></UsersContanier>}></Route>
       </div>
+    </div>
   );
 }
 
