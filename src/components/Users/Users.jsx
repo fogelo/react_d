@@ -5,14 +5,18 @@ import userPhoto from '../../assets/images/photo.jpeg'
 
 let Users = (props) => {
 
-    if (props.users.length === 0) { // такую грязь делать нельзя, в помощь классовые компоненты (l52)
+    let getUsers = () => {
+        if (props.users.length === 0) { // такую грязь делать нельзя, в помощь классовые компоненты (l52)
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items)
-        })
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
     }
 
+
     return <div>
+        <button onClick={getUsers}>get users</button>
         {
             props.users.map(u => <div key={u.id}>
                 <div><img className={classes.photo} src={u.photos.small != null ? u.photos.small : userPhoto}></img></div>
@@ -27,7 +31,6 @@ let Users = (props) => {
                 </div>
             </div>)
         }
-
     </div>
 }
 export default Users
