@@ -1,13 +1,13 @@
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
 import DialogsContanier from './components/Dialogs/DialogsContanier';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 import UsersContanier from './components/Users/UsersContanier';
+import ProfileContanier from './components/Profile/ProfileContanier';
 
 
 const App = (props) => {
@@ -16,7 +16,7 @@ const App = (props) => {
       <Header></Header>
       <Navbar></Navbar>
       <div className="App-wrapper-content">
-        <Route path='/profile' render={() => <Profile></Profile>}></Route>
+        <Route path='/profile' render={() => <ProfileContanier></ProfileContanier>}></Route>
         <Route path='/dialogs' render={() => <DialogsContanier></DialogsContanier>}></Route>
         <Route path='/news' component={News}></Route>
         <Route path='/music' component={Music}></Route>
