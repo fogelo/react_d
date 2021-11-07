@@ -1,6 +1,8 @@
 import classes from './Users.module.css'
 import userPhoto from '../../assets/images/photo.jpeg'
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios'
+
 
 const Users = (props) => {
 
@@ -10,7 +12,6 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-
     return <div>
         <div>
             {pages.map(p => {
@@ -18,7 +19,6 @@ const Users = (props) => {
                     onClick={() => { props.onPageChanged(p) }}>{p}</span>
             })}
         </div>
-
         {
             props.users.map(u => <div key={u.id}>
                 <div>
@@ -32,12 +32,33 @@ const Users = (props) => {
                 <div>{'u.location.country'}</div>
                 <div>
                     {u.followed
-                        ? <button onClick={() => { props.unfollow(u.id) }}>unfollow</button>
-                        : <button onClick={() => { props.follow(u.id) }}>follow</button>}
+                        ? <button onClick={() => {
+
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { 
+                                withCredentials: true, 
+                                headers: { "API-KEY": "dbb2362b-785b-4f9a-847a-900f168fe50a"}
+                                })
+                                .then(response => {
+                                    if (response.data.resultCode == 0) {
+                                        props.unfollow(u.id)
+                                    }
+                                })
+                        }}>unfollow</button>
+                        : <button onClick={() => {
+
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, { 
+                                withCredentials: true,
+                                headers: { "API-KEY": "dbb2362b-785b-4f9a-847a-900f168fe50a"}
+                                })
+                                .then(response => {
+                                    if (response.data.resultCode == 0) {
+                                        props.follow(u.id)
+                                    }
+                                })
+                        }}>follow</button>}
                 </div>
             </div>)
         }
     </div>
 }
-
 export default Users
