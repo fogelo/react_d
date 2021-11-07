@@ -1,8 +1,15 @@
 .photo {
     width: 70px;
 }
-
 .selectedPage {
     font-weight: bold;
     font-size: large;
+}
+
+.usersInfo {
+    border: 2px solid rgb(0, 195, 255);
+    border-radius: 8px;
+    margin: 10px 10px;
+    width: 200px;
+    /* display: block; */
 }

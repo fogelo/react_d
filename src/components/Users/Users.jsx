@@ -20,7 +20,7 @@ const Users = (props) => {
             })}
         </div>
         {
-            props.users.map(u => <div key={u.id}>
+            props.users.map(u => <div className = {classes.usersInfo} key={u.id}>
                 <div>
                     <NavLink to={'/profile/' + u.id}>
                         <img className={classes.photo} src={u.photos.small != null ? u.photos.small : userPhoto}></img>
@@ -32,28 +32,31 @@ const Users = (props) => {
                 <div>{'u.location.country'}</div>
                 <div>
                     {u.followed
-                        ? <button onClick={() => {
-
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { 
-                                withCredentials: true, 
-                                headers: { "API-KEY": "dbb2362b-785b-4f9a-847a-900f168fe50a"}
-                                })
+                        ? <button disabled={props.followingInProgress.some(id=>id === u.id)} onClick={() => {
+                            props.toggleFollowingInProgress(true, u.id)
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                withCredentials: true,
+                                headers: { "API-KEY": "dbb2362b-785b-4f9a-847a-900f168fe50a" }
+                            })
                                 .then(response => {
                                     if (response.data.resultCode == 0) {
                                         props.unfollow(u.id)
                                     }
+                                    props.toggleFollowingInProgress(false, u.id)
+
                                 })
                         }}>unfollow</button>
-                        : <button onClick={() => {
-
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, { 
+                        : <button disabled={props.followingInProgress.some(id=>id === u.id)} onClick={() => {
+                            props.toggleFollowingInProgress(true, u.id)
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                 withCredentials: true,
-                                headers: { "API-KEY": "dbb2362b-785b-4f9a-847a-900f168fe50a"}
-                                })
+                                headers: { "API-KEY": "dbb2362b-785b-4f9a-847a-900f168fe50a" }
+                            })
                                 .then(response => {
                                     if (response.data.resultCode == 0) {
                                         props.follow(u.id)
                                     }
+                                    props.toggleFollowingInProgress(false, u.id)
                                 })
                         }}>follow</button>}
                 </div>
