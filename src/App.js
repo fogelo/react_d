@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom';
 import UsersContanier from './components/Users/UsersContanier';
 import ProfileContanier from './components/Profile/ProfileContanier';
 import HeaderContanier from './components/Header/HeaderContanier';
+import LoginPage from './components/Login/Login'
 
 
 const App = (props) => {
@@ -22,6 +23,8 @@ const App = (props) => {
         <Route path='/music' component={Music}></Route>
         <Route path='/settings' component={Settings}></Route>
         <Route path='/users' render={() => <UsersContanier></UsersContanier>}></Route>
+        <Route path='/login' render={() => <LoginPage></LoginPage>}></Route>
+
       </div>
     </div>
   );
