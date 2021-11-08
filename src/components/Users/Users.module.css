@@ -13,3 +13,7 @@
     width: 200px;
     /* display: block; */
 }
+
+span {
+    margin-left: 7px;
+}
