@@ -4,7 +4,8 @@ import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../
 import Dialogs from './Dialogs'
 import StoreContext from '../../StoreContext'
 import { connect } from 'react-redux'
-import {withAuthRedirect} from './../../hoc/withAuthRedirect'
+import { withAuthRedirect } from './../../hoc/withAuthRedirect'
+import { compose } from 'redux'
 
 
 
@@ -22,9 +23,7 @@ let mapDispatchToProps = (dispatch) => { //настраивает callback'и к
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs)
-
-// connect создает контейнерную компонунту для Dialogs как мы это делали вручную, 
-// f1 и f2 нужны чтобы настраивать то что нужно для презентационной омпоненты Dialogs
-const DialogsContanier = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
-export default DialogsContanier
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)
