@@ -15,8 +15,8 @@ const ProfileInfo = (props) => {
         <img src={props.profile.photos.large != null ? props.profile.photos.large : 'https://socpartnerstvo.org/img/avatar_male.png'} />
         <div>{'Обо мне: ' + props.profile.aboutMe}</div>
         <div>{'Мой инстаграмм: ' + props.profile.contacts.instagram}</div>
-        <div>{`Статус: ${props.profile.lookingForAJob ? 'Ищу работу' : "Не ищу работу"}`}</div>
-        <ProfileStatus status={'this is my status'}/>
+        <div>{`${props.profile.lookingForAJob ? 'Ищу работу' : "Не ищу работу"}`}</div>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       </div>
     </div>
   )
