@@ -1,6 +1,6 @@
 import React from 'react'
 import Message from './Message/Message'
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogs-reducer'
+import { sendMessageActionCreator } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 import StoreContext from '../../StoreContext'
 import { connect } from 'react-redux'
@@ -18,8 +18,7 @@ let mapStateToProps = (state) => { //настраивает данные, кот
 
 let mapDispatchToProps = (dispatch) => { //настраивает callback'и которые мы будет отправлять в нашу презентационную компоненту
     return {
-        updateNewMessageBody: (body) => { dispatch(updateNewMessageTextActionCreator(body)) },
-        sendMessage: () => { dispatch(sendMessageActionCreator()) }
+        sendMessage: (newMessageElement) => { dispatch(sendMessageActionCreator(newMessageElement)) }
     }
 }
 
