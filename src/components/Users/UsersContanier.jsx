@@ -1,19 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, unfollow, setCurrentPage, toggleFollowingInProgress, getUsers } from '../../redux/users-reducer';
+import { follow, unfollow, setCurrentPage, toggleFollowingInProgress, requestUsers } from '../../redux/users-reducer';
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-
+import {
+    getUsers, getPageSize,
+    getTotalUsersCount, getCurrentPage,
+    getIsFetching, getFollowingInProgress
+} from '../../redux/users-selectors';
 
 class UsersContanier extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.requestUsers(pageNumber, this.props.pageSize);
     }
     render() {
         return <>
@@ -32,7 +35,7 @@ class UsersContanier extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+/* let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -41,10 +44,21 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.ifFetching,
         followingInProgress: state.usersPage.followingInProgress
     }
+} */
+
+let mapStateToProps = (state) => {
+    return {
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
+    }
 }
 
 export default compose(
-    connect(mapStateToProps, 
-        {follow, unfollow,setCurrentPage,toggleFollowingInProgress,getUsers}),
-  )(UsersContanier)
-  
+    connect(mapStateToProps,
+        { follow, unfollow, setCurrentPage, toggleFollowingInProgress, requestUsers }),
+)(UsersContanier)
+
