@@ -5,24 +5,27 @@ import { Field, reduxForm } from 'redux-form'
 import { required, maxLengthCreator } from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormsControls/FormsControl';
 
-const MyPosts = (props) => {
+class MyPosts extends React.Component {
 
-  let onAddPost = (values) => {
-    props.addPost(values.newPostText);
-  }
+  render() {
+    let onAddPost = (values) => {
+      this.props.addPost(values.newPostText);
+    }
 
-  let postsElements = props.posts.map(p => <Post className={classes.post} messages={p.message} likeCount={p.likeCount}></Post>)
+    let postsElements = this.props.posts.map(p => <Post className={classes.post} messages={p.message} likeCount={p.likeCount}></Post>)
 
-  return (
-    <div className={classes.mainContent}>
-      <h3>My Posts</h3>
-      <AddNewPostForm onSubmit={onAddPost}></AddNewPostForm>
-      <div className={classes.posts}>
-        {postsElements}
+    return (
+      <div className={classes.mainContent}>
+        <h3>My Posts</h3>
+        <AddNewPostForm onSubmit={onAddPost}></AddNewPostForm>
+        <div className={classes.posts}>
+          {postsElements}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
+
 
 const maxLength10 = maxLengthCreator(10)
 const addNewPostForm = (props) => {
@@ -34,7 +37,7 @@ const addNewPostForm = (props) => {
         placeholder={'Enter your post'}
         validate={[required, maxLength10]}></Field>
       <div><button>add</button></div>
-    </form> 
+    </form>
   )
 }
 
