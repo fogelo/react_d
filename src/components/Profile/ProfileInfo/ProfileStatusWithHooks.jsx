@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 // import classes from './ProfileStatus.module.css'
 
@@ -9,11 +10,14 @@ const ProfileStatusWithHooks = (props) => {
         debugger
         let editMode = stateArray[0] //занчение, которое кидаем в useState
         let setEditMode = stateArray[1] //функция, которое будет менять значение, 
-                                        //после того как эта функция изменит значение реакт сделает перерисовку */
+                                        //после того как эта функция изменит значение реакт сделает перерисовку всей компоненты */
 
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
 
+    useEffect(() => {
+        setStatus(props.status)
+    },[])
     const activateEditMode = () => {
         setEditMode(true)
     }
@@ -30,7 +34,7 @@ const ProfileStatusWithHooks = (props) => {
         <div> <span>  </span>
             {!editMode &&
                 <div>
-                    <span onDoubleClick={activateEditMode}>{props.status || '-------'} yo</span>
+                    <span onDoubleClick={activateEditMode}>{props.status || '-------'}</span>
                 </div>}
 
             {editMode &&
