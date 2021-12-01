@@ -7,7 +7,7 @@ import {
   getUsersProfile,
   getStatus,
   updateStatus,
-} from "./../../redux/profile-reducer";
+} from "../../redux/profile-reducer";
 import { withRouter } from "react-router";
 import { usersAPI } from "../../api/api";
 import { withAuthRedirect } from "./../../hoc/withAuthRedirect";
