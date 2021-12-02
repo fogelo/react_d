@@ -14,6 +14,11 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { initializeApp } from './redux/app-reducer'
 import Preloader from './components/common/Preloader/Preloader';
+import { compose } from 'redux';
+import { withRouter } from "react-router";
+import store from './redux/redux-store'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 
 class App extends React.Component {
@@ -22,7 +27,7 @@ class App extends React.Component {
   }
   render() {
     if (!this.props.initialized) {
-      
+
       return <Preloader />
     }
     return (
@@ -48,4 +53,19 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return ({ initialized: state.app.initialized, })
 }
-export default connect(mapStateToProps, { initializeApp })(App);
+
+let AppContanier = compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp }))(App);
+
+  let MainApp = (props)=>{
+   return <BrowserRouter>
+      <Provider store={store}>
+        {/* <React.StrictMode> */}
+          <AppContanier />
+        {/* </React.StrictMode> */}
+      </Provider>
+    </BrowserRouter>
+  }
+
+  export default MainApp
