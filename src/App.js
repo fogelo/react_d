@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import UsersContanier from './components/Users/UsersContanier';
 // import ProfileContanier from './components/Profile/ProfileContanier';
 import HeaderContanier from './components/Header/HeaderContanier';
@@ -77,13 +77,13 @@ let AppContanier = compose(
   connect(mapStateToProps, { initializeApp }))(App);
 
 let MainApp = (props) => {
-  return <BrowserRouter>
+  return <HashRouter>
     <Provider store={store}>
       {/* <React.StrictMode> */}
       <AppContanier />
       {/* </React.StrictMode> */}
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default MainApp
