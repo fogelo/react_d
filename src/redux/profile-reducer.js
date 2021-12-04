@@ -1,9 +1,10 @@
 import { usersAPI, profileAPI } from "../api/api";
 
-let ADD_POST = "ADD_POST";
-let DELETE_POST = "DELETE_POST";
-let SET_USER_PROFILE = "SET_USER_PROFILE";
-let SET_STATUS = "SET_STATUS";
+let ADD_POST = "PROFILE/ADD_POST";
+let DELETE_POST = "PROFILE/DELETE_POST";
+let SET_USER_PROFILE = "PROFILE/SET_USER_PROFILE";
+let SET_STATUS = "PROFILE/SET_STATUS";
+let SAVE_PHOTO_SUCCESS = "PROFILE/SEVE_PHOTO_SUCCESS";
 
 let initialState = {
   posts: [
@@ -18,29 +19,35 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_POST": {
+    case ADD_POST: {
       let message = action.newPostText;
       return {
         ...state,
         posts: [...state.posts, { id: "5", message: message, likeCount: "0" }],
       };
     }
-    case "DELETE_POST": {
+    case DELETE_POST: {
       return {
         ...state,
         posts: state.posts.filter((p) => p.id != action.postId),
       };
     }
-    case "SET_STATUS": {
+    case SET_STATUS: {
       return {
         ...state,
         status: action.status,
       };
     }
-    case "SET_USER_PROFILE": {
+    case SET_USER_PROFILE: {
       return {
         ...state,
         profile: action.profile,
+      };
+    }
+    case SAVE_PHOTO_SUCCESS: {
+      return {
+        ...state,
+        profile: {...state.profile, photos: action.photos},
       };
     }
     default:
@@ -60,6 +67,8 @@ export const setUsersProfile = (profile) => ({
   profile,
 });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
+
 
 export const getUsersProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId).then((response) => {
@@ -80,5 +89,15 @@ export const updateStatus = (status) => (dispatch) => {
     }
   });
 };
+export const savePhoto = (file) => (dispatch) => {
+  profileAPI.savePhoto(file).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+  });
+};
+
+
+
 
 export default profileReducer;
