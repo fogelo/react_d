@@ -1,3 +1,14 @@
 .mainPhoto {
     width: 150px;
 }
+
+.contacts{
+    margin-left: 20px;
+}
+
+.formSummaryError {
+    border: solid red 2px;
+    padding: 5px;
+    color: rosybrown;
+  }
+  

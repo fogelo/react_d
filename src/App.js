@@ -9,7 +9,6 @@ import UsersContanier from './components/Users/UsersContanier';
 // import ProfileContanier from './components/Profile/ProfileContanier';
 import HeaderContanier from './components/Header/HeaderContanier';
 import LoginPage from './components/Login/Login'
-import { getAuthUserData } from './redux/auth-reducer'
 import { connect } from 'react-redux';
 import React from 'react';
 import { initializeApp } from './redux/app-reducer'
@@ -17,7 +16,6 @@ import Preloader from './components/common/Preloader/Preloader';
 import { compose } from 'redux';
 import { withRouter } from "react-router";
 import store from './redux/redux-store'
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Suspense } from 'react';
 

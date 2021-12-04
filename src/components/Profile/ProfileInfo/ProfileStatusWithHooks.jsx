@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-// import classes from './ProfileStatus.module.css'
+import classes from './ProfileStatusWithHooks.module.css'
 
 const ProfileStatusWithHooks = (props) => {
 
@@ -17,7 +17,7 @@ const ProfileStatusWithHooks = (props) => {
 
     useEffect(() => {
         setStatus(props.status)
-    },[])
+    }, [])
     const activateEditMode = () => {
         setEditMode(true)
     }
@@ -34,12 +34,12 @@ const ProfileStatusWithHooks = (props) => {
         <div> <span>  </span>
             {!editMode &&
                 <div>
-                    <span onDoubleClick={activateEditMode}>{props.status || '-------'}</span>
+                    <b>Status:</b><span className={classes.status} onDoubleClick={activateEditMode}>{props.status || '-------'}</span>
                 </div>}
 
             {editMode &&
                 <div>
-                    <input onChange={onStatusChange} onBlur={deActivateEditMode} autoFocus={true} value={status} />
+                    <b>Status:</b><input onChange={onStatusChange} onBlur={deActivateEditMode} autoFocus={true} value={status} />
                 </div>}
 
         </div>

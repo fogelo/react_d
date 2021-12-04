@@ -10,9 +10,16 @@ class MyPosts extends React.Component {
   render() {
     let onAddPost = (values) => {
       this.props.addPost(values.newPostText);
+      
     }
-
-    let postsElements = this.props.posts.map(p => <Post className={classes.post} messages={p.message} likeCount={p.likeCount}></Post>)
+    let profile = this.props.profile
+  
+    let postsElements = this.props.posts.map(p => <Post
+      key={p.id} 
+      profile={profile ? profile : ''}
+      className={classes.post} 
+      messages={p.message} 
+      likeCount={p.likeCount}></Post>)
 
     return (
       <div className={classes.mainContent}>
